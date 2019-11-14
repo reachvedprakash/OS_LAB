@@ -66,7 +66,7 @@ int main()
     }
 
 
-    cout << "Arrival " << "Execution " << "Service " << "Waiting "<< endl;
+    cout << "Arrival " << "Execution " << "Service " << " "<< endl;
     for( int i = 0 ; i < N ; i++ )
     {
         cout << res[0][i] << "        " << res[1][i] << "       " << res[2][i] << "        " << res[3][i] << endl; 
