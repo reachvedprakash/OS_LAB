@@ -34,7 +34,6 @@ if __name__ == "__main__":
         main_task() 
         print("Iteration {0}: x = {1}".format(i,x)) 
 
-
 # In[ ]:
 
 

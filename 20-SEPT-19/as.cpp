@@ -46,5 +46,7 @@ int main(){
 	pthread_mutex_init(&mut,NULL);
 	pthread_create(&producer,NULL,produce,NULL);
 	pthread_create(&consumer,NULL,consume,NULL);
+	pthread_join(producer,NULL);
+	pthread_join(consumer,NULL);
 	pthread_exit(NULL);
 }

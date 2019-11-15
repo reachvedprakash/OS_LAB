@@ -39,14 +39,14 @@ int main()
     {
         EndingTym[i] = 0;
     }
-    int time = 1;
+    int time = 0;
     int count = 0;
     for (int i = 0; i < N; time++)
     {
 
         while (pro[i].arrival <= time and i < N)
         {
-            // cout << "Done" << endl;
+            cout << "Done" << endl;
             execuSpace.push(pro[i]);
             i++;
         }
@@ -56,7 +56,7 @@ int main()
         temp.rem = temp.rem - 1;
         if (temp.rem == 0)
         {
-            EndingTym[temp.pid] = time ;
+            EndingTym[temp.pid] = time + 1 ;
             count++;
             execuSpace.pop();
         }
@@ -71,11 +71,11 @@ int main()
             break;
         }
     }
-    time--;
+    // time--;
     while( !execuSpace.empty() )
     {
         PAIR temp = execuSpace.top();
-        // cout << temp.pid << " " << temp.rem << " " << time << endl;
+        cout << temp.pid << " " << temp.rem << " " << time << endl;
         time = time + temp.rem;
         EndingTym[temp.pid] = time  ;
         execuSpace.pop();
@@ -83,7 +83,6 @@ int main()
 
     for (int i = 0; i < N; i++)
     {
-
         cout << pro[i].pid << " " << EndingTym[i] - pro[i].arrival - pro[i].exec <<  endl;
     }
 }

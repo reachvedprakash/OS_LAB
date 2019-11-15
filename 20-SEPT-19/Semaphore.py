@@ -1,14 +1,14 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[17]:
+# In[7]:
 
 
 import threading 
 x = 0
 
 
-# In[28]:
+# In[8]:
 
 
 def increment(): 
@@ -16,17 +16,19 @@ def increment():
     x += 5
 
 
-# In[29]:
+# In[9]:
 
 
-def thread_task(lock): 
+def thread_task(lock,sem): 
     for _ in range(100): 
+        sem.acquire()
         lock.acquire() 
         increment() 
-        lock.release() 
+        lock.release()
+        sem.release()
 
 
-# In[30]:
+# In[10]:
 
 
 def main_task(): 
@@ -34,9 +36,10 @@ def main_task():
     x = 0
   
     lock = threading.Lock() 
+    sem = threading.Semaphore()
   
-    t1 = threading.Thread(target=thread_task, args=(lock,)) 
-    t2 = threading.Thread(target=thread_task, args=(lock,)) 
+    t1 = threading.Thread(target=thread_task, args=(lock,sem)) 
+    t2 = threading.Thread(target=thread_task, args=(lock,sem)) 
   
     t1.start() 
     t2.start() 
@@ -45,13 +48,25 @@ def main_task():
     t2.join() 
 
 
-# In[31]:
+# In[11]:
 
 
 if __name__ == "__main__": 
     for i in range(10): 
         main_task() 
         print("Iteration {0}: x = {1}".format(i,x))
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
 
 
 # In[ ]:
